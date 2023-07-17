@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListadosComponent } from './components/listados/listados.component';
 import { AltasComponent } from './components/altas/altas.component';
-import { BajasComponent } from './components/bajas/bajas.component';
+//import { BajasComponent } from './components/listados/listados.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { ModificacionesComponent } from './components/modificaciones/modificaciones.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     ListadosComponent,
     AltasComponent,
-    BajasComponent,
+ //   BajasComponent,
     ConsultasComponent,
     ModificacionesComponent,
   ],

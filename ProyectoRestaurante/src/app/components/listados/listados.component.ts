@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Restaurante } from 'src/app/models/restaurante';
 import { RestauranteService } from 'src/app/services/restaurante.service';
 
@@ -11,9 +12,11 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 export class ListadosComponent implements OnInit{
 
   lista_restaurantes = Array<Restaurante>();
+  
 
-  constructor(private restauranteService:RestauranteService){ 
+  constructor(private restauranteService:RestauranteService, private servicioRutas: Router){ 
     this.lista_restaurantes = new Array<Restaurante>;
+    
   }
 
   ngOnInit(): void {
@@ -30,6 +33,7 @@ export class ListadosComponent implements OnInit{
                 console.log("Mostrando lista");
                 
                   console.log(`ID = ${rest.id} NOMBRE = ${rest.nombre}`)
+
                 
               
               
@@ -42,17 +46,28 @@ export class ListadosComponent implements OnInit{
 
       }
     );
-    /**mostrarListaRestaurantes(): void{
-      console.log("Mostrando lista");
-      this.lista_restaurantes.forEach(d => {
-        console.log(`ID = ${rest.id} NOMBRE = ${rest.nombre}`)
-      }
-    )}
-    */
   }
-  borrarRestaurante(){
-    console.log("Borrando el restaurante");
-  }
+  
+  borrarRestaurante(id: number){
+    
+    restaurante: Restaurante;
+    console.log(`ID = ${id}`);
+    this.restauranteService.borraRestaurante(id).subscribe({
+      complete: () => console.log(`com completa`),
+      error: (errorRx) => {
+      console.error(errorRx);
+      alert(`Error al eliminar el restaurante`);
+    },
+    next: (borraRestaurante) => {
+      alert(
+        `Restaurante eliminado correctamente con id ${id}`
+      );
+      
+      // tras el post exitoso redirigo al usuario al listado
+       this.servicioRutas.navigate(['/listados']);
+    },
+  });
+}
   
 
 }

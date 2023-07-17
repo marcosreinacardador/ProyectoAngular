@@ -12,7 +12,7 @@
   
   .rest_titulo{
     font-family: "Nunito", sans-serif;
-    font-size: 3rem;
+    font-size: 24pt;
     font-weight: bold;
     text-align: center;
     color: #282626;
@@ -24,7 +24,7 @@
   
   .card {
     width: 18rem;
-    margin: 10px auto;
+    margin: auto;
     background-color: #f2f2f2;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #2a4560;
@@ -51,6 +51,7 @@
     font-family: "Nunito", sans-serif;
       font-weight: bold;
       font-size: 1rem;
+      text-align: center;
       color: #ffffff;
   }
   
@@ -76,3 +77,16 @@
     background-color: #3e332847;
     color: #ffffff;
   }
+
+  .rest_button_borrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    background-color:#830a0a;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+  }
+
+  

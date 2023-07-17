@@ -1,24 +1,31 @@
 <!--
 <button class="btn btn-success" routerLink="/altas">CREAR</button>
 -->
-<br><br>
-<h1 class="rest_titulo">Lista de Restaurantes - Málaga</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4" *ngFor="let restaurante of lista_restaurantes">
-                <div class="card rest_card">
-                    <img src="/assets/imgrest.jpeg" class="card_img" alt="...">
-                    <div class="card-body">
-                        <img src="/assets/favicon.png" class="card_logo" alt="...">
-                        <div>
-                            <h1 class="card_title rest_nombre">{{ restaurante.nombre }}</h1>
-                            <p class="card_text rest_direccion">{{ restaurante.direccion }}</p>
-                            <p class="card_text rest_barrio">{{ restaurante.barrio }}</p>
-                            <a href="#" class="btn btn-warning rest_button">Entra en el restaurante</a>
-                            <button class="btn btn-primary" (click)="borrarRestaurante()">Borrar Restaurante</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<br /><br />
+<h6 class="rest_titulo">Lista de Restaurantes</h6>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let restaurante of lista_restaurantes">
+      <div class="card rest_card">
+        <img src="/assets/imgrest.jpeg" class="card_img" alt="..." />
+        <div class="card-body">
+          
+          <div>
+            <h1 class="card_title rest_nombre">{{ restaurante.nombre }}</h1>
+            <p class="card_text rest_direccion">{{ restaurante.direccion }}</p>
+            <p class="card_text rest_barrio">{{ restaurante.barrio }}</p>
+            <a href="#" class="btn btn-warning rest_button"
+              >Ficha restaurante</a
+            >
+            <p></p>
+            {{restaurante.id}}
+            <button (click)='borrarRestaurante(restaurante.id)'>
+                <img src="/assets/papelera.png" height ="40" width="40">
+            </button>
+
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>

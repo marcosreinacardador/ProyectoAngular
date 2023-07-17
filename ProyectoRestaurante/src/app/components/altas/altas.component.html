@@ -1,6 +1,6 @@
 <!-- FORMULARIO PLANTILLA TEMPLATE FORMS 
  el simbolo # viewchild-->
- <form >
+ <form (submit)="guardarRestaurante()">
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" #nombre="ngModel" [(ngModel)]="restaurante.nombre" class="form-control" id="nombre" name="nombre" placeholder="Intro nombre" required pattern=".{4,15}">

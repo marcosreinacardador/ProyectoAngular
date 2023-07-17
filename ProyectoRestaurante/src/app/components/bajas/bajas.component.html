@@ -1,1 +1,22 @@
-<p>bajas works!</p>
+<!-- FORMULARIO PLANTILLA TEMPLATE FORMS 
+ el simbolo # viewchild-->
+ <form (submit)="borrarRestaurante()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" #nombre="ngModel" [(ngModel)]="restaurante.nombre" class="form-control" id="nombre" name="nombre" placeholder="Intro nombre" required pattern=".{4,15}">
+      <!-- definimos una sección de error, que muestre el mensaje si el campo no se valida -->
+      <div class="alert alert-danger" [hidden]="nombre.pristine||nombre.valid">
+            Nombre obligatorio
+      </div>
+    </div>
+    <p></p>
+    <br>
+    <!-- desactivar el boton si hay error en la entrada de datos
+    <button type="submit" [disabled]="!formulario_restaurante.valid">CREAR</button>
+    -->
+    <button type="submit" class="btn btn-primary">BORRAR</button>
+
+</form>
+
+
+

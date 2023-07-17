@@ -24,4 +24,12 @@ cabeceras: HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
   {
    return this.hhtp.post<Restaurante>(RestauranteService.URL_GET_RESTAURANTES, restaurante, {headers:this.cabeceras});
   }
+
+  borraRestaurante(id:number){
+    return this.hhtp.delete<Restaurante>(RestauranteService.URL_GET_RESTAURANTES + `${id}`);
+  }
+
+  buscarRestaurante(nombre: string){
+    return this.hhtp.get<any>(RestauranteService.URL_GET_RESTAURANTES + `/consultas?titulo=${nombre}` )
+  }
 }
