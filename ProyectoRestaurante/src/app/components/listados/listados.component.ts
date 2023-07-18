@@ -62,9 +62,10 @@ export class ListadosComponent implements OnInit{
       alert(
         `Restaurante eliminado correctamente con id ${id}`
       );
-      
+      window.location.reload();
       // tras el post exitoso redirigo al usuario al listado
        this.servicioRutas.navigate(['/listados']);
+       
     },
   });
 }

@@ -10,8 +10,7 @@ export class RestauranteService {
 static readonly URL_GET_RESTAURANTES:string = "http://localhost:8081/restaurante/";
 
 cabeceras: HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
-  http: any;
-
+  
   constructor(private hhtp:HttpClient) { }
 
   getListaRestaurante() : Observable<Array<Restaurante>>{ 
@@ -29,7 +28,8 @@ cabeceras: HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
     return this.hhtp.delete<Restaurante>(RestauranteService.URL_GET_RESTAURANTES + `${id}`);
   }
 
-  buscarRestaurante(nombre: string){
-    return this.hhtp.get<any>(RestauranteService.URL_GET_RESTAURANTES + `/consultas?titulo=${nombre}` )
+  getRestauranteById(id: number):Observable<Restaurante>{
+    return this.hhtp.get<Restaurante>(RestauranteService.URL_GET_RESTAURANTES + `${id}`);
   }
+
 }
