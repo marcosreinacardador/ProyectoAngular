@@ -30,6 +30,7 @@ export class Restaurante {
     especialidad1:string;
     especialidad2:string;
     especialidad3:string;
+    fotoHashCode:number;
 
     constructor(){
     this.id = 0;
@@ -44,5 +45,6 @@ export class Restaurante {
     this.especialidad1 = '';
     this.especialidad2 = '';
     this.especialidad3 = '';
+    this.fotoHashCode = 0;
     }
 }

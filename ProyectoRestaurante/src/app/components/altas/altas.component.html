@@ -1,5 +1,7 @@
 <!-- FORMULARIO PLANTILLA TEMPLATE FORMS 
  el simbolo # viewchild-->
+<br> 
+ <p style="text-align:center"> <font size="5"><b>REGISTRAR NUEVO RESTAURANTE</b></font></p>
  <form (submit)="guardarRestaurante()">
     <div class="form-group">
       <label for="nombre">Nombre</label>
@@ -104,9 +106,14 @@
         <div class="alert alert-danger" [hidden]="especialidad3.pristine||especialidad3.valid">
               Especialidad obligatorio
         </div>
-    </div> 
+    </div>
     <p></p>
-    <br>
+    <div class="form-group">
+        <label for="foto">Foto</label>
+        <input type="file" (change)="seleccionarFoto($event)" class="form-control" id="foto" name="foto">   
+  
+    </div>
+    
     <!-- desactivar el boton si hay error en la entrada de datos
     <button type="submit" [disabled]="!formulario_restaurante.valid">CREAR</button>
     -->

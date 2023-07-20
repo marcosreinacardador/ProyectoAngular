@@ -84,12 +84,9 @@
     justify-content: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
     background-color:#830a0a;
-    color: #fdfbfb;
+    color: #ffffff;
     font-weight: bold;
     border: none;
   }
 
-  .rest_button_borrar:hover {
-    background-color: #3e332847;
-    color: #ffffff;
-  }
+  
