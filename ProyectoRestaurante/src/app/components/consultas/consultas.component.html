@@ -2,16 +2,21 @@
 <div class="form-group">
     <form (submit)="buscarRestaurante()">
       <label for="id">ID del restaurante:</label>
+      &nbsp;
       <input type="text" id="id" name="id" [(ngModel)]="idABuscar" />
+      &nbsp;
       <button type="submit">Buscar</button>
     </form>
   </div>
-
+<div *ngIf="cuerpo">
   <div *ngIf="buscarRestaurante" class="row">
     <div class="col-md-4 mb-4">
       <div class="card rest_card">
         <div class="card-body">
           <div>
+            <img *ngIf="restaurante.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{restaurante.id}}" class="card_img" alt="..." />
+            <!-- si fotohascode es nulo cargamos la foto por defecto-->
+            <img *ngIf="!restaurante.fotoHashCode" src="/assets/imgrest.jpeg" class="card_img" alt="..." />
             <h1 class="card_title rest_nombre">{{ restaurante.nombre }}</h1>
             <p class="card_text rest_direccion">{{ restaurante.direccion }}</p>
             <p class="card_text rest_barrio">{{ restaurante.barrio }}</p>
@@ -23,3 +28,4 @@
       </div>
     </div>
   </div>
+</div>

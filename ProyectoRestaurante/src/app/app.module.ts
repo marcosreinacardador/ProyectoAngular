@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
  //   BajasComponent,
     ConsultasComponent,
     ModificacionesComponent,
+    BusquedaComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,

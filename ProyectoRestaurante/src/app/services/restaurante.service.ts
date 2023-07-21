@@ -79,4 +79,12 @@ export class RestauranteService {
       { params: parametros }
     );
   }
+
+ ////GET http://localhost:8081/restaurante/buscarPorBarrioNombreOEspecialidad?clave=papa
+ getRestaurantesPorTermino (termino:string):Observable<Array<Restaurante>>  {
+  //let parametros:HttpParams = new HttpParams().set('clave', termino);
+  return this.hhtp.get<Array<Restaurante>>(RestauranteService.URL_GET_RESTAURANTES+"/BuscarCualquierCosa/"+termino);
+}
+ 
+
 }

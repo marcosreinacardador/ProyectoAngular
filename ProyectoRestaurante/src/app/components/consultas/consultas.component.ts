@@ -9,9 +9,10 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
   styleUrls: ['./consultas.component.css'],
 })
 export class ConsultasComponent implements OnInit {
-  restaurante: any;
+  restaurante: Restaurante = new  Restaurante();
   idABuscar!: number;
- 
+  cuerpo!: boolean;
+
   constructor(
     private restauranteService: RestauranteService,
     private servicioRutas: Router
@@ -19,29 +20,23 @@ export class ConsultasComponent implements OnInit {
 
   ngOnInit(): void {
     const restaurantId = this.idABuscar;
-    
   }
 
   buscarRestaurante() {
-    this.restauranteService.getRestauranteById(this.idABuscar).subscribe
-    ({
+    this.restauranteService.getRestauranteById(this.idABuscar).subscribe({
       complete: () => console.log(`com completa`),
-      next: (restauranteEncontrado: {
-        id: number;
-        nombre: any;
-        direccion: any;
-      }) => {
+      next: (restauranteEncontrado) => {
         if (restauranteEncontrado) {
-          //this.idABuscar = restauranteEncontrado.id;
           console.log(
-            `Restaurante consultado correctamente con nombre ${restauranteEncontrado.id} en la dirección ${restauranteEncontrado.direccion}`
+            `Restaurante consultado correctamente con ID ${restauranteEncontrado.id} en la dirección ${restauranteEncontrado.direccion}`
           );
+          this.cuerpo = true;
           this.restaurante = restauranteEncontrado;
           // Después de encontrar el restaurante, puedes redirigir al usuario al listado de restaurantes si es necesario.
           // this.servicioRutas.navigate(['/listados']);
         } else {
           alert(
-            `No se encontró ningún restaurante con el nombre ${this.restaurante.id}`
+            `No se encontró ningún restaurante con el ID ${this.idABuscar}`
           );
         }
       },

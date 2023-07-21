@@ -6,6 +6,7 @@ import { AltasComponent } from './components/altas/altas.component';
 //import { BajasComponent } from './components/listados/listados.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { ModificacionesComponent } from './components/modificaciones/modificaciones.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 const routes: Routes = [
   {path:"listados", component: ListadosComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   //{path:"baja", component: BajasComponent},
   {path:"consultas", component: ConsultasComponent},
   {path:"modificaciones", component: ModificacionesComponent},
+  {path:"busqueda", component: BusquedaComponent}
 ];
 
 @NgModule({

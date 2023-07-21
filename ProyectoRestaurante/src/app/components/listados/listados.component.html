@@ -16,11 +16,9 @@
             <h1 class="card_title rest_nombre">{{ restaurante.nombre }}</h1>
             <p class="card_text rest_direccion">{{ restaurante.direccion }}</p>
             <p class="card_text rest_barrio">{{ restaurante.barrio }}</p>
-            <a href="#" class="btn btn-warning rest_button"
-              >Ficha restaurante</a>
+            <a href="#" class="btn btn-warning rest_button">Ficha restaurante</a>
             <p></p>
-            {{restaurante.id}}
-            <button (click)='eliminaRestaurante(restaurante.id)'>Borrar
+            <button  class="btn btn-warning rest_button" (click)='eliminaRestaurante(restaurante.id)'>Borrar
                 
             </button>
 
