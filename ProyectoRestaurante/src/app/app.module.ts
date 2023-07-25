@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { MapaComponent } from './components/mapa/mapa.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MapaComponent } from './components/mapa/mapa.component';
     FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

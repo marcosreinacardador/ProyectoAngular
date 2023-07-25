@@ -21,8 +21,8 @@ export class AltasComponent implements OnInit {
     private servicioRutas: Router
   ) {
     this.restaurante = new Restaurante();
-
-    this.restaurante.nombre = 'El Cateto';
+/* 
+    this.restaurante.nombre = 'el cateto';
     this.restaurante.direccion = 'La fuente s/n';
     this.restaurante.barrio = 'Este';
     this.restaurante.web = 'http://www.elcateto.org';
@@ -33,9 +33,9 @@ export class AltasComponent implements OnInit {
     this.restaurante.especialidad1 = 'Marisco';
     this.restaurante.especialidad2 = 'Pescado';
     this.restaurante.especialidad3 = 'Carne';
-
+ */
 this.barrios = [
-      '---',
+      'Selecciona barrio',
       'Centro',
       'Este',
       'Ciudad Jardín',
@@ -47,6 +47,8 @@ this.barrios = [
       'Campanillas',
       'Puerto de la Torre',
       'Teatinos-Universidad',
+      'Huelin',
+      'El Palo'
     ];
   }
 
@@ -75,15 +77,15 @@ this.barrios = [
         complete: () => console.log(`com completa`),
         error: (errorRx) => {
           console.error(errorRx);
-          alert(`Error al insertar el restaurante`);
+          alert(`Error al insertar el restaurante con foto`);
         },
         next: restauranteNuevo => {
           alert(
             `Restaurante insertado correctamente con id ${restauranteNuevo.id}`
           );
           // tras el post exitoso redirigo al usuario al listado
-          this.servicioRutas.navigateByUrl('/altas');
-          this.servicioRutas.navigate(['/listados']);
+         this.servicioRutas.navigateByUrl('/altas');
+        //  this.servicioRutas.navigate(['/listados']);
         },
       });
     } else {
@@ -92,7 +94,7 @@ this.barrios = [
         complete: () => console.log(`com completa`),
         error: (errorRx) => {
           console.error(errorRx);
-          alert(`Error al insertar el restaurante`);
+          alert(`Error al insertar el restaurante sin foto`);
         },
         next: restauranteNuevo => {
           alert(

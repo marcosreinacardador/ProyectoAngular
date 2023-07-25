@@ -10,6 +10,10 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
   styleUrls: ['./listados.component.css'],
 })
 export class ListadosComponent implements OnInit {
+
+  // en caso de usarlo en modo local hay que documentar la siguiente linea
+  ruta_servicio_foto :string = RestauranteService.URL_ACTUAL+"/obtenerFoto";
+
   lista_restaurantes = Array<Restaurante>();
 
   totalRegistros: number = 0;

@@ -7,7 +7,10 @@
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let restaurante of lista_restaurantes">
       <div class="card rest_card">
-        <img *ngIf="restaurante.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{restaurante.id}}" class="card_img" alt="..." />
+      <!-- para modo local sustituir por esta ruta 
+        <img *ngIf="restaurante.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{restaurante.id}}" class="card_img" alt="..." /> 
+      -->
+        <img *ngIf="restaurante.fotoHashCode" src="{{ruta_servicio_foto}}/{{restaurante.id}}" class="card_img" alt="..." />
         <!-- si fotohascode es nulo cargamos la foto por defecto-->
         <img *ngIf="!restaurante.fotoHashCode" src="/assets/imgrest.jpeg" class="card_img" alt="..." />
         <div class="card-body">

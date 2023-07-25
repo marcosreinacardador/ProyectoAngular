@@ -21,9 +21,12 @@
   (click)="restaurateTocado(rest)"
   class="list-group-item list-group-item-action"
   *ngFor="let rest of listaRestaurantes"
-  >{{ rest.nombre }} {{ rest.barrio }} {{ rest.especialidad1 }}
-  {{ rest.especialidad2 }} {{ rest.especialidad3 }}
-<button class="btn btn-primary" (click)="restaurateTocado(rest)">mapa</button>  
-</a>
+  >Nombre: {{ rest.nombre }} - Barrio: {{ rest.barrio }} - Especialidades: {{ rest.especialidad1 }} -
+  {{ rest.especialidad2 }} - {{ rest.especialidad3 }}
+  <span class="espacios"></span>
+  <button class="btn btn-primary" (click)="restaurateTocado(rest)">mapa</button>
+  <span class="espacios"></span>
+  <button class="btn btn-primary" (click)="encuentrame()">Encuentrame</button>  
+  </a>
 
 <app-mapa #mapa></app-mapa>

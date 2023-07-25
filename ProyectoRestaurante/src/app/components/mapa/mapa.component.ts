@@ -24,7 +24,7 @@ export class MapaComponent implements OnInit {
   private initMap():void{
     this.map = L.map('map', {
       center: [ 36.7316787,-4.4651259 ],
-      zoom: 20
+      zoom: 10
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -50,14 +50,17 @@ export class MapaComponent implements OnInit {
   {
 
     var myIcon = L.icon({
-      iconUrl: '/assets/ubicacion.png',
-      iconSize: [38, 95],
+      iconUrl: '/assets/icono.png',
+      iconSize: [38,60],
       iconAnchor: [22, 94],
-      popupAnchor: [-3, -76],
+      popupAnchor: [-3, -24],
       //shadowUrl: '/assets/sombra.png',
       //shadowSize: [68, 95],
       //shadowAnchor: [22, 94]
   });
+
+  
+    
 
     //USO EL API DE LEAFLET //https://leafletjs.com/examples/quick-start/
     let nivel_de_zoom = 12;
@@ -72,7 +75,7 @@ export class MapaComponent implements OnInit {
       radius: 150
   }).addTo(this.map);
   }  
-
+ 
 
 
 }

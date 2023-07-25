@@ -7,8 +7,16 @@ import { Restaurante } from '../models/restaurante';
   providedIn: 'root',
 })
 export class RestauranteService {
-  static readonly URL_GET_RESTAURANTES: string =
+
+  // para usarlo en modo para verlo con el puerto 8081
+  static readonly URL_RESTAURANTES_PROD: string = 'restaurante';
+
+  // para usarlo en modo local usar eta constante
+  static readonly URL_RESTAURANTES_TEST: string =
     'http://localhost:8081/restaurante';
+
+  // sólo cambiar la URL del restauranteService
+  static readonly URL_ACTUAL: string = RestauranteService.URL_RESTAURANTES_PROD;
 
   cabeceras: HttpHeaders = new HttpHeaders({
     'Content-type': 'application/json',
@@ -17,14 +25,12 @@ export class RestauranteService {
   constructor(private hhtp: HttpClient) {}
 
   getListaRestaurante(): Observable<Array<Restaurante>> {
-    return this.hhtp.get<Array<Restaurante>>(
-      RestauranteService.URL_GET_RESTAURANTES
-    );
+    return this.hhtp.get<Array<Restaurante>>(RestauranteService.URL_ACTUAL);
   }
 
   postRestaurante(restaurante: Restaurante): Observable<Restaurante> {
     return this.hhtp.post<Restaurante>(
-      RestauranteService.URL_GET_RESTAURANTES,
+      RestauranteService.URL_ACTUAL,
       restaurante,
       { headers: this.cabeceras }
     );
@@ -32,14 +38,12 @@ export class RestauranteService {
 
   borraRestaurante(id: number) {
     return this.hhtp.delete<Restaurante>(
-      RestauranteService.URL_GET_RESTAURANTES + `/${id}`
+      RestauranteService.URL_ACTUAL + `/${id}`
     );
   }
 
   getRestauranteById(id: number): Observable<Restaurante> {
-    return this.hhtp.get<Restaurante>(
-      RestauranteService.URL_GET_RESTAURANTES + `/${id}`
-    );
+    return this.hhtp.get<Restaurante>(RestauranteService.URL_ACTUAL + `/${id}`);
   }
 
   //  genera la creacion del registro del restaurante con foto
@@ -54,17 +58,17 @@ export class RestauranteService {
     formData.append('direccion', restaurante.direccion);
     formData.append('barrio', restaurante.barrio);
     formData.append('web', restaurante.web);
-    formData.append('ficha_google', restaurante.fichaGoogle);
+    formData.append('fichaGoogle', restaurante.fichaGoogle);
     formData.append('latitud', restaurante.latitud + '');
     formData.append('longitud', restaurante.longitud + '');
-    formData.append('precio_medio', restaurante.precioMedio + '');
+    formData.append('precioMedio', restaurante.precioMedio + '');
     formData.append('especialidad1', restaurante.especialidad1);
     formData.append('especialidad2', restaurante.especialidad2);
     formData.append('especialidad3', restaurante.especialidad3);
     formData.append('archivo', archivo);
 
     return this.hhtp.post<Restaurante>(
-      RestauranteService.URL_GET_RESTAURANTES + '/crear-con-foto',
+      RestauranteService.URL_ACTUAL + '/crear-con-foto',
       formData
     );
   }
@@ -74,17 +78,27 @@ export class RestauranteService {
     let parametros: HttpParams = new HttpParams()
       .set('page', page)
       .set('size', size);
-    return this.hhtp.get<any>(
-      RestauranteService.URL_GET_RESTAURANTES + '/pagina',
-      { params: parametros }
+    return this.hhtp.get<any>(RestauranteService.URL_ACTUAL + '/pagina', {
+      params: parametros,
+    });
+  }
+
+  ////GET http://localhost:8081/restaurante/buscarPorBarrioNombreOEspecialidad?clave=papa
+  getRestaurantesPorTermino(termino: string): Observable<Array<Restaurante>> {
+    //let parametros:HttpParams = new HttpParams().set('clave', termino);
+    return this.hhtp.get<Array<Restaurante>>(
+      RestauranteService.URL_ACTUAL + '/BuscarCualquierCosa/' + termino
     );
   }
 
- ////GET http://localhost:8081/restaurante/buscarPorBarrioNombreOEspecialidad?clave=papa
- getRestaurantesPorTermino (termino:string):Observable<Array<Restaurante>>  {
-  //let parametros:HttpParams = new HttpParams().set('clave', termino);
-  return this.hhtp.get<Array<Restaurante>>(RestauranteService.URL_GET_RESTAURANTES+"/BuscarCualquierCosa/"+termino);
-}
- 
-
+  //Con PUT
+  modificaRestauranteConFoto(
+    restaurante: Restaurante,
+    id: number
+  ): Observable<Restaurante> {
+    return this.hhtp.put<Restaurante>(
+      RestauranteService.URL_ACTUAL + `/editar-con-foto/{id}`,
+      restaurante
+    );
+  }
 }

@@ -5,7 +5,7 @@
   <input
     type="search"
     #cajabusqueda
-    (keydown.enter)="busqueda()"
+    (keyup)="busqueda()"
     class="form-control"
     id="busqueda"
     name="busqueda"
@@ -25,7 +25,7 @@
     {{ rest.especialidad2 }} - {{ rest.especialidad3 }}
     
     <!-- CAMPOS DEL RESTAURANTE A MODIFICAR-->
-<form (submit)="guardarCambios()">
+<form *ngIf="muestrame !=muestrame" (submit)="guardarCambios()">
 <div>
     <br><br>
     <label for="nombre"><b>Restaurante a modificar</b></label>
@@ -132,7 +132,7 @@
         </div>
     </div>
     
-    <br>
+  
     <!-- desactivar el boton si hay error en la entrada de datos
     <button type="submit" [disabled]="!formulario_restaurante.valid">CREAR</button>
     -->
@@ -140,4 +140,3 @@
 
 </form>
 </a>
-

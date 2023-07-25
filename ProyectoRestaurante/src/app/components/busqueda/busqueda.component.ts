@@ -57,4 +57,33 @@ export class BusquedaComponent implements OnInit {
   busqueda3() {
     console.log('busqueda3');
   }
-}
+
+  encuentrame()
+  {
+    if (navigator.geolocation)
+    {
+      console.log("tenemos acceso al API Geolocation");
+      navigator.geolocation.getCurrentPosition
+      ((pos)=>this.exito(pos),
+      ()=> this.fracaso());
+      
+    } else {
+      console.log("NO tenemos acceso al API Geolocation");
+    }
+  }
+
+    exito (posicion: GeolocationPosition){
+      console.log("Se ha encotrado posicion");
+      console.log(`Latitud ${posicion.coords.latitude}`);
+      console.log(`Longitud ${posicion.coords.longitude}`);
+      this.mapaHijo.dibujarPosicion (posicion.coords.latitude,posicion.coords.longitude );
+
+    }
+
+    fracaso () {
+      console.log("N es poisible determinar la posicion en este dispositov.");
+    }
+  }
+
+  
+
