@@ -15,6 +15,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import {MatInputModule} from '@angular/material/input';
+import { FichaComponent } from './components/ficha/ficha.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatInputModule} from '@angular/material/input';
     ConsultasComponent,
     ModificacionesComponent,
     BusquedaComponent,
-    MapaComponent
+    MapaComponent,
+    FichaComponent
   ],
   imports: [
     BrowserModule,

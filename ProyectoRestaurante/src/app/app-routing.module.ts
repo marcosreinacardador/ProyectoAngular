@@ -7,6 +7,7 @@ import { AltasComponent } from './components/altas/altas.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { ModificacionesComponent } from './components/modificaciones/modificaciones.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { FichaComponent } from './components/ficha/ficha.component';
 
 const routes: Routes = [
   {path:"listados", component: ListadosComponent},
@@ -14,11 +15,13 @@ const routes: Routes = [
   //{path:"baja", component: BajasComponent},
   {path:"consultas", component: ConsultasComponent},
   {path:"modificaciones", component: ModificacionesComponent},
-  {path:"busqueda", component: BusquedaComponent}
+  {path:"busqueda", component: BusquedaComponent},
+  {path:"ficha", component: FichaComponent},
+  {path:"**", redirectTo: "/"}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash:false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

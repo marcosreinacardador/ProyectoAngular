@@ -16,7 +16,9 @@ export class RestauranteService {
     'http://localhost:8081/restaurante';
 
   // sólo cambiar la URL del restauranteService
-  static readonly URL_ACTUAL: string = RestauranteService.URL_RESTAURANTES_PROD;
+static readonly URL_ACTUAL: string = RestauranteService.URL_RESTAURANTES_TEST;
+
+ // static readonly URL_ACTUAL: string = RestauranteService.URL_RESTAURANTES_PROD;
 
   cabeceras: HttpHeaders = new HttpHeaders({
     'Content-type': 'application/json',
