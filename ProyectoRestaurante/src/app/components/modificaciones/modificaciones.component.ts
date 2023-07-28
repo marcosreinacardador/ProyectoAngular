@@ -6,24 +6,25 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 @Component({
   selector: 'app-modificaciones',
   templateUrl: './modificaciones.component.html',
-  styleUrls: ['./modificaciones.component.css']
+  styleUrls: ['./modificaciones.component.css'],
 })
 export class ModificacionesComponent implements OnInit {
-  
   @ViewChild('cajabusqueda') cajaInput!: ElementRef;
-  
+
   //union type es un objeto de dos tipos, tambien se puede any
-  foto_seleccionada!: File|null;  
+  foto_seleccionada!: File | null;
 
   barrios: Array<String>;
-
+  restaurante: Restaurante;
   listaRestaurantes!: Array<Restaurante>;
   restauranteSel: Restaurante;
-  muestrame:boolean = false;
+  muestrame: boolean = false;
 
-  formulario:boolean = false;
+  formulario: boolean = false;
 
-  constructor(private rs: RestauranteService,  private servicioRutas: Router) {
+  mostrarContenido: boolean = false;
+
+  constructor(private rs: RestauranteService, private servicioRutas: Router) {
     this.barrios = [
       'Selecciona barrio',
       'Centro',
@@ -38,11 +39,19 @@ export class ModificacionesComponent implements OnInit {
       'Puerto de la Torre',
       'Teatinos-Universidad',
       'Huelin',
-      'El Palo'
+      'El Palo',
     ];
   }
-  
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    let restauranteString: any = localStorage.getItem('restauranteSel');
+    this.restauranteSel = JSON.parse(restauranteString);
+    let formularioString: any = sessionStorage.getItem('formulario');
+    this.formulario = JSON.parse(formularioString);
+    // this.mostrarContenido = this.formulario;
+    console.log(this.formulario, 'soyformdefivha');
+    console.log(this.restauranteSel, 'soy rest sel');
+  }
 
   busqueda() {
     let terminoBusqueda: string = this.cajaInput.nativeElement.value;
@@ -56,7 +65,6 @@ export class ModificacionesComponent implements OnInit {
         error: (errorRx) => console.error(errorRx),
         next: (listaRestaurantesRx) => {
           this.listaRestaurantes = listaRestaurantesRx;
-          
         },
       });
     } else {
@@ -65,28 +73,25 @@ export class ModificacionesComponent implements OnInit {
   }
 
   restaurateTocado(restaurante: Restaurante) {
-        
-        this.listaRestaurantes.length = 0;
-     
-      console.log('Nombre tocado = ' + restaurante.nombre);
-      alert('Nombre tocado = ' + restaurante.nombre + ' id ' + restaurante.id);
-    }
+    this.muestrame = true;
+    this.listaRestaurantes.length = 0;
 
-    
+    console.log('Nombre tocado = ' + restaurante.nombre);
+    alert('Nombre tocado = ' + restaurante.nombre + ' id ' + restaurante.id);
+  }
 
-   
+  modificarRestaurante(restaurante: Restaurante) {
+    this.muestrame = true;
+    this.formulario = true;
+    let formu = JSON.stringify(this.formulario);
+    sessionStorage.setItem('formulario', formu);
+    this.restauranteSel = restaurante;
+    this.servicioRutas.navigateByUrl('/ficha');
+    console.log(this.restauranteSel);
+    let restlocal = JSON.stringify(this.restauranteSel);
+    localStorage.setItem('restauranteSel', restlocal);
+  }
 
-    modificarRestaurante(restaurante: Restaurante) {
-      this.formulario = true;
-      let formu = JSON.stringify(this.formulario)
-      sessionStorage.setItem('formulario', formu)
-      this.restauranteSel = restaurante;
-      this.servicioRutas.navigateByUrl('/ficha');
-      console.log(this.restauranteSel);
-      let restlocal = JSON.stringify(this.restauranteSel);
-      localStorage.setItem('restauranteSel',restlocal); 
-    }
-
-    
+  
 
 }

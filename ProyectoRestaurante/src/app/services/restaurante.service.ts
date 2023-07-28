@@ -94,13 +94,23 @@ static readonly URL_ACTUAL: string = RestauranteService.URL_RESTAURANTES_TEST;
   }
 
   //Con PUT
-  modificaRestauranteConFoto(
-    restaurante: Restaurante,
-    id: number
-  ): Observable<Restaurante> {
-    return this.hhtp.put<Restaurante>(
-      RestauranteService.URL_ACTUAL + `/editar-con-foto/{id}`,
-      restaurante
-    );
+  modificaRestauranteConFoto(restaurante: Restaurante, id: number, archivo: File): Observable<Restaurante> {
+
+    let formData = new FormData();
+
+    formData.append('nombre', restaurante.nombre);
+    formData.append('direccion', restaurante.direccion);
+    formData.append('barrio', restaurante.barrio);
+    formData.append('web', restaurante.web);
+    formData.append('fichaGoogle', restaurante.fichaGoogle);
+    formData.append('latitud', restaurante.latitud + '');
+    formData.append('longitud', restaurante.longitud + '');
+    formData.append('precioMedio', restaurante.precioMedio + '');
+    formData.append('especialidad1', restaurante.especialidad1);
+    formData.append('especialidad2', restaurante.especialidad2);
+    formData.append('especialidad3', restaurante.especialidad3);
+    formData.append('archivo', archivo);
+    
+    return this.hhtp.put<Restaurante>(RestauranteService.URL_ACTUAL + `/editar-con-foto/`+id,formData);
   }
 }

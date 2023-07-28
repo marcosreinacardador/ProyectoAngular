@@ -24,7 +24,7 @@ export class FichaComponent implements OnInit{
 
   formulario:boolean = false;
 
-  
+  ruta_servicio_foto :string = RestauranteService.URL_ACTUAL+"/obtenerFoto";
 
   constructor(private rs: RestauranteService,  private servicioRutas: Router){
     this.barrios = [
@@ -62,42 +62,43 @@ export class FichaComponent implements OnInit{
 
 
 
-  modificarRestaurante(restaurante: Restaurante) {
-    
-      if (this.restauranteSel) {
-        // Aquí asumimos que ya tienes el restaurante seleccionado para modificar en la variable restauranteSel
-  
-        // Asigna los valores modificados de restauranteSel al objeto restaurante
-        this.restaurante.nombre = this.restauranteSel.nombre;
-        this.restaurante.direccion = this.restauranteSel.direccion;
-        this.restaurante.barrio = this.restauranteSel.barrio;
-        this.restaurante.web = this.restauranteSel.web;
-        this.restaurante.fichaGoogle = this.restauranteSel.fichaGoogle;
-        this.restaurante.latitud = this.restauranteSel.latitud;
-        this.restaurante.longitud = this.restauranteSel.longitud;
-        this.restaurante.precioMedio = this.restauranteSel.precioMedio;
-        this.restaurante.especialidad1 = this.restauranteSel.especialidad1;
-        this.restaurante.especialidad2 = this.restauranteSel.especialidad2;
-        this.restaurante.especialidad3 = this.restauranteSel.especialidad3;
-
-
+  modificarRestauranteSel(restaurante: Restaurante) {
+    console.log("Paso por el boton de modificar");
+      
       // Luego, puedes llamar a tu servicio para enviar la solicitud PUT con los datos actualizados del restaurante
-      this.rs.modificaRestauranteConFoto(restaurante, this.restauranteSeleccionado.id).subscribe({
+      this.rs.modificaRestauranteConFoto(this.restauranteSel, this.restauranteSel.id, this.foto_seleccionada).subscribe({
         complete: () => console.log('Comunicación completada'),
         error: (error) => {
           console.error(error);
-          alert('Error al modificar el restaurante');
+          alert('Error al modificar el restaurante'+this.restauranteSel.id+' '+this.restauranteSel.nombre);
         },
         next: () => {
           alert('Restaurante modificado correctamente');
+         /* if (this.restauranteSel) {
+            // Aquí asumimos que ya tienes el restaurante seleccionado para modificar en la variable restauranteSel
+      
+            // Asigna los valores modificados de restauranteSel al objeto restaurante
+            this.restaurante.nombre = this.restauranteSel.nombre;
+            this.restaurante.direccion = this.restauranteSel.direccion;
+            this.restaurante.barrio = this.restauranteSel.barrio;
+            this.restaurante.web = this.restauranteSel.web;
+            this.restaurante.fichaGoogle = this.restauranteSel.fichaGoogle;
+            this.restaurante.latitud = this.restauranteSel.latitud;
+            this.restaurante.longitud = this.restauranteSel.longitud;
+            this.restaurante.precioMedio = this.restauranteSel.precioMedio;
+            this.restaurante.especialidad1 = this.restauranteSel.especialidad1;
+            this.restaurante.especialidad2 = this.restauranteSel.especialidad2;
+            this.restaurante.especialidad3 = this.restauranteSel.especialidad3;
+          //  this.restaurante.fotoHashCode = this.restauranteSel.fotoHashCode;
+           } else {
+              // Manejo de error si no se ha seleccionado ningún restaurante para modificar
+              console.error('Error: No se ha seleccionado un restaurante para modificar');
+              alert('Error: No se ha seleccionado un restaurante para modificar');
+            }*/
           this.servicioRutas.navigateByUrl('/restaurantes');
         },
       });
-    } else {
-      // Manejo de error si no se ha seleccionado ningún restaurante para modificar
-      console.error('Error: No se ha seleccionado un restaurante para modificar');
-      alert('Error: No se ha seleccionado un restaurante para modificar');
-    }
+    
   }
   
   seleccionarFoto(evento: Event) {
